@@ -34,7 +34,21 @@ const makeDeltaTracker = function(initValue) {
   }
 }
 
-const makeFiboGenerator = undefined;
+const makeFiboGenerator = function(current = 1, old = 0) {
+  if(current < old){
+    let temp = current;
+    current = old;
+    old = temp;
+  }
+  
+  return function(){
+    let result = old;
+    let next = old + current;
+    old = current;
+    current = next;
+    return result;
+  }
+}
 
 const makeCycler = function(items) {
   let cycle = items.toString().split(",");
