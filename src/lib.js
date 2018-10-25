@@ -35,7 +35,16 @@ const makeDeltaTracker = function(initValue) {
 }
 
 const makeFiboGenerator = undefined;
-const makeCycler = undefined;
+
+const makeCycler = function(items) {
+  let cycle = items.toString().split(",");
+  return function () {
+    let currentValue = cycle.shift();
+    cycle.push(currentValue);
+    return currentValue;
+  }
+}
+
 const curry = undefined;
 const compose = undefined;
 
