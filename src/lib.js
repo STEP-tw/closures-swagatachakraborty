@@ -60,11 +60,11 @@ const makeCycler = function(items) {
   }
 }
 
-const curry = function(func, initValue) {
+const curry = function(combiner, initValue) {
   let init = initValue;
   
-  return function (arg1, arg2) {
-    let result = func(init,arg1,arg2);
+  return function (valueToCombineWith, anotherValue) {
+    let result = combiner(init,valueToCombineWith,anotherValue);
     return result;
   }
 }
