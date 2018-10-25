@@ -61,10 +61,10 @@ const makeCycler = function(items) {
 }
 
 const curry = function(func, initValue) {
-  let arg1 = initValue;
+  let init = initValue;
   
-  return function (arg2, arg3) {
-    let result = func(arg1,arg2,arg3);
+  return function (arg1, arg2) {
+    let result = func(init,arg1,arg2);
     return result;
   }
 }
