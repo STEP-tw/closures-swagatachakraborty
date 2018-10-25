@@ -15,11 +15,7 @@ const makeCounterFromN = function(initValue){
 }
 
 const makeCounterFromZero =  function(){
-  let count = 0;
-
-  return function(){
-    return count++;
-  }
+  return makeCounterFromN(0);
 }
 
 const makeDeltaTracker = function(initValue) {

@@ -17,7 +17,7 @@ const testTrackerWithNegativeDeltaValue = function() {
   assert.deepEqual({old: 1, delta: -1, new: 0}, trackDelta(-1));
   assert.deepEqual({old: 0, delta: -2, new: -2}, trackDelta(-2));
 };
-const testTracker = function() {
+const testTrackerWithChangInDeltaValueInResultentObject = function() {
  let trackDelta = makeDeltaTracker(3);
  let result = trackDelta(1);
  assert.deepEqual({old: 3, delta: 1, new: 4}, result);
@@ -38,7 +38,7 @@ const runTests = function() {
     console.log("Function 'makeDeltaTracker' in not implemented yet. Not running tests.");
     return;
   }
-  testTracker();
+  testTrackerWithChangInDeltaValueInResultentObject();
   console.log("testTracker() passed");
 
   testTrackerWithDefaultDeltaZero();
