@@ -23,18 +23,18 @@ const makeCounterFromZero =  function(){
 }
 
 const makeDeltaTracker = function(initValue) {
-  let deltaTrack = { old : initValue,
-    delta : 0, 
-    new : initValue };
-
+  let oldDelta = initValue;
+  let delta = 0; 
+  let newDelta = initValue;
+  
   return function(deltaValue ) {
     if( deltaValue == undefined ) {
-      return deltaTrack;
+      return {old : oldDelta, delta : delta, new : newDelta};
     }
-    deltaTrack["old"] = deltaTrack["new"];
-    deltaTrack["delta"] = deltaValue;
-    deltaTrack["new"] = deltaTrack["new"] + deltaTrack["delta"];
-    return deltaTrack;
+    oldDelta = newDelta;
+    delta = deltaValue;
+    newDelta = newDelta + delta;
+    return { old : oldDelta, delta : delta, new : newDelta };
   }
 }
 
