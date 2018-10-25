@@ -60,19 +60,22 @@ const makeCycler = function(items) {
   }
 }
 
-const curry = function(combiner, initValue) {
+// combiner: (A,A) => A e.g sum, concat, average, max, min
+// fold: (B,A) => B 
+// map: A => B
+const curry = function(func, initValue) {
   let init = initValue;
   
-  return function (valueToCombineWith, anotherValue) {
-    let result = combiner(init,valueToCombineWith,anotherValue);
+  return function (arg1, arg2) {
+    let result = func(init,arg1,arg2);
     return result;
   }
 }
 
-const compose = function( finalFunction, initFunction) {
-  return function(initArg1, initArg2){
-    let resultOfInitFunction = initFunction(initArg1, initArg2);
-    return finalFunction(resultOfInitFunction);
+const compose = function( outerFunction, innerFunction) {
+  return function(argToInner, argToOuter){
+    let resultOfInnerFunction = innerFunction(argToInner, argToOuter);
+    return outerFunction(resultOfInnerFunction);
   }
 }
 
