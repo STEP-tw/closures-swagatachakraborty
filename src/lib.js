@@ -23,10 +23,7 @@ const makeDeltaTracker = function(initValue) {
   let delta = 0; 
   let newDelta = initValue;
   
-  return function(deltaValue ) {
-    if( deltaValue == undefined ) {
-      return {old : oldDelta, delta : delta, new : newDelta};
-    }
+  return function(deltaValue = 0) {
     oldDelta = newDelta;
     delta = deltaValue;
     newDelta = newDelta + delta;
@@ -34,18 +31,14 @@ const makeDeltaTracker = function(initValue) {
   }
 }
 
-const makeFiboGenerator = function(current = 1, old = 0) {
-  if(current < old){
-    let temp = current;
-    current = old;
-    old = temp;
-  }
-  
+const makeFiboGenerator = function(second = 1, first = 0 ) {
+  let previous = Math.min(first,second);
+  let present = Math.max(first,second);
   return function(){
-    let result = old;
-    let next = old + current;
-    old = current;
-    current = next;
+    let result = previous;
+    let next = previous + present;
+    previous = present;
+    present = next;
     return result;
   }
 }
@@ -60,9 +53,6 @@ const makeCycler = function(items) {
   }
 }
 
-// combiner: (A,A) => A e.g sum, concat, average, max, min
-// fold: (B,A) => B 
-// map: A => B
 const curry = function(func, initValue) {
   let init = initValue;
   
